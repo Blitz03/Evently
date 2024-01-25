@@ -1,9 +1,9 @@
 import { Webhook } from "svix";
-import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
-import { clerkClient } from "@clerk/nextjs";
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
+import { clerkClient } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -62,7 +62,6 @@ export async function POST(req: Request) {
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
-      //* ! means that it could be null too
       username: username!,
       firstName: first_name,
       lastName: last_name,

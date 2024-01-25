@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
 //* Implementing a Cached Connection Approach
 //* This approach prevents repeated connections to the database on every action using connectToDatabase(), optimizing performance.
 //* If a connection exists in the cache, it returns the existing connection.
 //* If not, it creates a new connection and stores it in the cache for future use.
 
-// Utilizing a global cache to store the MongoDB connection
+const MONGODB_URI = process.env.MONGODB_URI;
+
 let cached = (global as any).mongoose || { conn: null, promise: null };
 
 export const connectToDatabase = async () => {

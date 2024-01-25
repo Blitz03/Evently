@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 
-export interface IEvent extends mongoose.Document {
+export interface IEvent extends Document {
   _id: string;
   title: string;
   description?: string;
@@ -16,7 +16,7 @@ export interface IEvent extends mongoose.Document {
   organizer: { _id: string; firstName: string; lastName: string };
 }
 
-const EventSchema = new mongoose.Schema({
+const EventSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String },
   location: { type: String },
@@ -27,10 +27,10 @@ const EventSchema = new mongoose.Schema({
   price: { type: String },
   isFree: { type: Boolean, default: false },
   url: { type: String },
-  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
-  organizer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  category: { type: Schema.Types.ObjectId, ref: "Category" },
+  organizer: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
-const Event = mongoose.models.Event || mongoose.model("Event", EventSchema);
+const Event = models.Event || model("Event", EventSchema);
 
 export default Event;
