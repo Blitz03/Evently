@@ -46,9 +46,9 @@ export default function Collection({
 
           {totalPages > 1 && (
             <Pagination
-            // urlParamName={urlParamName}
-            // page={page}
-            // totalPages={totalPages}
+              urlParamName={urlParamName}
+              page={page}
+              totalPages={totalPages}
             />
           )}
         </div>
